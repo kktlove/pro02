@@ -10,12 +10,6 @@ public class MariaDBCon implements DBConnect {
     final String PASS = "1234";
     Connection conn = null;
 
-    final static String NOTICE_SELECT_ALL = "select * from notice order by no desc";
-    final static String NOTICE_SELECT_ONE = "select * from notice where no=?";
-    final static String NOTICE_INSERT = "insert into notice values (default,?,?,default,default);";
-    final static String NOTICE_UPDATE = "update notice set title=?, content=? where no=?";
-    final static String NOTICE_DELETE = "delete from notice where no=?";
-
     @Override
     public Connection connect() {
         try {
