@@ -25,7 +25,7 @@
         </nav>
         <h2 class="title">로그인</h2>
         <div class="container">
-            <form action="" method="post">
+            <form action="${path }/LoginPro.do" method="post">
                 <table class="table">
                     <tbody>
                     <tr>

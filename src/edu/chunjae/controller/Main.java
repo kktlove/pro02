@@ -1,6 +1,7 @@
 package edu.chunjae.controller;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 
