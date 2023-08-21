@@ -42,25 +42,32 @@ public class FileUploadProTest2Ctrl extends HttpServlet {
             file2.setSubject(mr.getParameter("subject"));
             file2.setContent(mr.getParameter("content"));
 
+            File upfile = null;
             Enumeration files = mr.getFileNames();
+
             int idx = 1;
             String item;
+            String oriFile = "";
+            String fileName = "";
             while(files.hasMoreElements()) {
                 item = (String) files.nextElement();
-                String oriFile = mr.getOriginalFileName(item); //실제 첨부된 파일경로와 이름
-                String fileName = mr.getFilesystemName(item);  //파일이름만 추출
-                File upfile = mr.getFile(item); //실제 업로드
-                if(upfile.exists()){
-                    msg = "파일 업로드 성공";
-                } else {
-                    msg = "파일 업로드 실패";
-                }
-                if(idx==1) {
-                    file2.setFilename1(upfile.getName());
-                } else if(idx==2){
-                    file2.setFilename2(upfile.getName());
-                } else if(idx==3){
-                    file2.setFilename3(upfile.getName());
+                oriFile = mr.getOriginalFileName(item); //실제 첨부된 파일경로와 이름
+                fileName = mr.getFilesystemName(item);  //파일이름만 추출
+                if(fileName!=null) {
+                    upfile = mr.getFile(item); //실제 업로드
+                    if (upfile.exists()) {
+                        long filesize = upfile.length();
+                        if(idx==1) {
+                            file2.setFilename3(upfile.getName());
+                        } else if(idx==2){
+                            file2.setFilename2(upfile.getName());
+                        } else if(idx==3){
+                            file2.setFilename1(upfile.getName());
+                        }
+                        msg = "파일 업로드 성공";
+                    } else {
+                        msg = "파일 업로드 실패";
+                    }
                 }
                 idx++;
             }
