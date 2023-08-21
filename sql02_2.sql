@@ -21,3 +21,15 @@ filename varchar(500)
 );
 
 select * from filetest;
+
+create table filetest2(
+uname varchar(200), 
+subject varchar(300), 
+content varchar(1000),
+filename1 varchar(500),
+filename2 varchar(500),
+filename3 varchar(500)
+);
+
+select * from filetest2;
+
