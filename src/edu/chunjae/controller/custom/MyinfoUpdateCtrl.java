@@ -8,8 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 
-@WebServlet("/MyinfoUpdate.do")
-public class MyinfoUpdateCtrl extends HttpServlet {
+@WebServlet("/MyInfoUpdate.do")
+public class MyInfoUpdateCtrl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = (String) request.getParameter("id");

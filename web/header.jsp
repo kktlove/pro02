@@ -52,7 +52,7 @@
                         </c:if>
                         <c:if test="${empty sid }">
                             <li class="nav-item"><a href="${path1 }/Login.do" class="nav-link">Login</a></li>
-                            <li class="nav-item"><a href="${path1 }/Join.do" class="nav-link">Join</a></li>
+                            <li class="nav-item"><a href="${path1 }/Term.do" class="nav-link">Join</a></li>
                             <li class="nav-item"><a href="${path1 }/Contact.do" class="nav-link">Contact US</a></li>
                         </c:if>
                     </ul>
