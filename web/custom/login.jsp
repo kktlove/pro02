@@ -38,6 +38,7 @@
                         <td>
                             <input type="submit" value="로그인" class="btn btn-primary">
                             <a href="" class="btn btn-secondary">회원가입</a>
+                            <a href="${path }/custom/naverLogin.jsp" class="btn btn-primary">네이버 로그인</a>
                         </td>
                     </tr>
                     </tbody>

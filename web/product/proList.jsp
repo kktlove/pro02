@@ -18,7 +18,7 @@
             <div class="container">
                 <ol class="breadcrumb justify-content-end">
                     <li class="breadcrumb-item"><a href="${path }">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Product</a></li>
+                    <li class="breadcrumb-item"><a href="${path }/ProList.do">Product</a></li>
                     <li class="breadcrumb-item active" aria-current="page">List</li>
                 </ol>
             </div>
@@ -27,76 +27,23 @@
         <div class="container">
             <div class="box_wrap">
                 <ul class="list row">
+                    <c:forEach var="pro" items="${proList }" varStatus="status">
                     <li class="col-3">
                         <div class="card" style="width: 18rem;">
-                            <img src="${path }/img/sample01.png" class="card-img-top" alt="샘플이미지">
+                            <div class="img-wrap" style="height:286px;overflow:hidden;">
+                                <img src="${path }/storage/${pro.imgSrc1 }" class="card-img-top" alt="샘플이미지">
+                            </div>
                             <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <h3 class="card-title" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${pro.pname }</h3>
+                                <p class="card-text">가격 : ${pro.price }</p>
+                                <a href="${path }/Product.do?pno=${pro.pno }" class="btn btn-primary">상세보기</a>
                             </div>
                         </div>
                     </li>
-                    <li class="col-3">
-                        <div class="card" style="width: 18rem;">
-                            <img src="${path }/img/sample01.png" class="card-img-top" alt="샘플이미지">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="col-3">
-                        <div class="card" style="width: 18rem;">
-                            <img src="${path }/img/sample01.png" class="card-img-top" alt="샘플이미지">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="col-3">
-                        <div class="card" style="width: 18rem;">
-                            <img src="${path }/img/sample01.png" class="card-img-top" alt="샘플이미지">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="col-3">
-                        <div class="card" style="width: 18rem;">
-                            <img src="${path }/img/sample01.png" class="card-img-top" alt="샘플이미지">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="col-3">
-                        <div class="card" style="width: 18rem;">
-                            <img src="${path }/img/sample01.png" class="card-img-top" alt="샘플이미지">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="col-3">
-                        <div class="card" style="width: 18rem;">
-                            <img src="${path }/img/sample01.png" class="card-img-top" alt="샘플이미지">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </li>
+                    </c:forEach>
+                    <c:if test="${empty proList}">
+                        <li class="col-12">해당 상품이 존재하지 않습니다.</li>
+                    </c:if>
                 </ul>
             </div>
         </div>

@@ -39,7 +39,7 @@
         <url-pattern>*.wav</url-pattern>
         <url-pattern>*.webm</url-pattern>
     </servlet-mapping>
-    <error-page>
+   <!-- <error-page>
         <error-code>403</error-code>
         <location>/forbiddenErrorPage.jsp</location>
     </error-page>
@@ -62,5 +62,5 @@
     <error-page>
         <exception-type>java.lang.Exception</exception-type>
         <location>/errorPage.jsp</location>
-    </error-page>
+    </error-page>-->
 </web-app>
