@@ -13,9 +13,11 @@ body, html { width: 100%; }
 <script src="./js/nav.js"></script>
 <link rel="stylesheet" href="./css/nav.css">
 <style>
-.title { text-align: center; }
+.title { text-align: center; padding-top: 3rem; }
 #hd { border-bottom:2px solid #333; }
 #ft { border-top:2px solid #333; margin-top: 20px; }
 .list { list-style: none; }
 .list li { margin-top: 24px; }
+.msg { text-align: center; }
+.subnav { padding-left: 4rem; }
 </style>

@@ -141,12 +141,6 @@ insert into category values('T', '해외서적');
 insert into category values('U', '해외콘텐츠');
 
 drop view inventory;
--- 재고 뷰 생성
-create view inventory as (select pno, amount from receive EXCEPT select pno, amount from serve);
-
-select * from product;
-
-select * from payment;
 
 -- 상품 목록
 select * from product order by pno;
@@ -167,7 +161,7 @@ update product set prono = concat(cate, pno) where pno=?;
 delete from product where pno=?;
 
 -- 상품 정보 변경
-update product set pname=?, cate=?, pcomment=?, plist=?, 
+update product set pname=?, pcomment=?, plist=?, 
 price=?, imgsrc1=?, imgsrc2=?, imgsrc3=? where pno=?;
 
 select * from receive;
@@ -215,3 +209,16 @@ select * from delivery;
 select * from payment;
 select * from custom;
 select * from inventory;
+select * from cart;
+select * from serve;
+select * from receive;
+
+
+-- 재고 처리 뷰 생성
+create view inventory as (select a.pno as pno, (sum(a.amount)-sum(b.amount)) as amount from receive a, serve b where a.pno=b.pno group by a.pno, b.pno);
+
+select * from inventory;
+
+
+
+

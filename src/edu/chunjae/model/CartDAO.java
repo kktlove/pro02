@@ -1,6 +1,9 @@
 package edu.chunjae.model;
 
 import edu.chunjae.dto.Cart;
+import edu.chunjae.dto.CartVO;
+import edu.chunjae.dto.Custom;
+import edu.chunjae.dto.Product;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -33,8 +36,24 @@ public class CartDAO {
         return cnt;
     }
 
-    public List<Cart> getByIdCartList(String cid){
-        List<Cart> cartList = new ArrayList<>();
+    public int delCart(int cartno){
+        int cnt = 0;
+        DBConnect con = new PostgreCon();
+        conn = con.connect();
+        try {
+            pstmt = conn.prepareStatement(DBConnect.CART_DELETE);
+            pstmt.setInt(1, cartno);
+            cnt = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            con.close(pstmt, conn);
+        }
+        return cnt;
+    }
+
+    public List<CartVO> getByIdCartList(String cid){
+        List<CartVO> cartList = new ArrayList<>();
         DBConnect con = new PostgreCon();
         conn = con.connect();
         try {
@@ -42,10 +61,12 @@ public class CartDAO {
             pstmt.setString(1, cid);
             rs = pstmt.executeQuery();
             while(rs.next()){
-                Cart cart = new Cart();
+                CartVO cart = new CartVO();
                 cart.setCartno(rs.getInt("cartno"));
                 cart.setCid(rs.getString("cid"));
+                cart.setName(getCusName(cart.getCid()));
                 cart.setPno(rs.getInt("pno"));
+                cart.setPname(getPname(cart.getPno()));
                 cart.setAmount(rs.getInt("amount"));
                 cartList.add(cart);
             }
@@ -55,5 +76,17 @@ public class CartDAO {
             con.close(rs, pstmt, conn);
         }
         return cartList;
+    }
+
+    public String getCusName(String id){
+        CustomDAO dao = new CustomDAO();
+        Custom cus = dao.getCustom(id);
+        return cus.getName();
+    }
+
+    public String getPname(int pno){
+        ProductDAO dao = new ProductDAO();
+        Product pro = dao.getProduct(pno);
+        return pro.getPname();
     }
 }

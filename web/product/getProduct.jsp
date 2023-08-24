@@ -34,11 +34,11 @@
                     <tr>
                         <td colspan="2">
                             <c:if test="${!empty pro.imgSrc1}">
-                            <img src="${path }/storage/${pro.imgSrc1 }" alt="대표 이미지">
+                            <img src="${path }/storage/${pro.imgSrc1 }" style="max-width:300px;" alt="대표 이미지">
                             </c:if>
                             <hr>
                             <c:if test="${!empty pro.imgSrc3}">
-                            <img src="${path }/storage/${pro.imgSrc3 }" alt="대표 이미지">
+                            <img src="${path }/storage/${pro.imgSrc3 }" style="max-width:300px;" alt="대표 이미지">
                             </c:if>
                         </td>
                     </tr>
@@ -78,7 +78,7 @@
                     <tr>
                         <td colspan="2">
                             <c:if test="${!empty pro.imgSrc2}">
-                            <img src="${path }/storage/${pro.imgSrc2 }" alt="대표 이미지">
+                            <img src="${path }/storage/${pro.imgSrc2 }" style="max-width:300px;" alt="대표 이미지">
                             </c:if>
                         </td>
                     </tr>
@@ -88,6 +88,7 @@
                     <a href="${path }/ProList.do" class="btn btn-primary">제품 목록</a>
                     <c:if test="${sid.equals('admin') }">
                         <a href="${path }/AddReceive.do" class="btn btn-primary">상품 입고</a>
+                        <a href="${path }/UpdateProduct.do?pno=${pro.pno }" class="btn btn-primary">상품 정보 수정</a>
                     </c:if>
                     <c:if test="${!empty sid }">
                         <a href="${path }/AddPayment.do?pno=${pro.pno }" class="btn btn-primary">구매하기</a>

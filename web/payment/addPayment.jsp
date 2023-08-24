@@ -58,6 +58,10 @@
                             <td>
                                 ${pro.pname }
                                 <input type="hidden" name="pname" id="proName" value="${pro.pname }">
+                                <input type="hidden" name="from" id="from" value="${from }">
+                                <c:if test="${from.equals('cart')}">
+                                    <input type="hidden" name="cartno" id="cartno" value="${cartno }">
+                                </c:if>
                             </td>
                         </tr>
                         <tr>
@@ -82,6 +86,9 @@
                             <td>
                                 <input type="hidden" name="pno" id="pno" value="${pro.pno }" />
                                 <input type="number" name="amount" id="amount" class="form-control" min="1" value="1" max="${amount }" />
+                                <c:if test="${amount==0}">
+                                    <strong>절판</strong>
+                                </c:if>
                             </td>
                         </tr>
                         </tbody>

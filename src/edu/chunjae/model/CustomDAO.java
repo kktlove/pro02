@@ -132,4 +132,39 @@ public class CustomDAO {
         }
         return cnt;
     }
+
+    public int updateCustom(Custom user) {
+        int cnt = 0;
+        DBConnect con = new PostgreCon();
+        try {
+            conn = con.connect();
+            pstmt = conn.prepareStatement(DBConnect.CUSTOM_UPDATE);
+            pstmt.setString(1, user.getPw());
+            pstmt.setString(2, user.getTel());
+            pstmt.setString(3, user.getEmail());
+            pstmt.setString(4, user.getId());
+            cnt = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            con.close(pstmt, conn);
+        }
+        return cnt;
+    }
+
+    public int deleteCustom(String id){
+        int cnt = 0;
+        DBConnect con = new PostgreCon();
+        try {
+            conn = con.connect();
+            pstmt = conn.prepareStatement(DBConnect.CUSTOM_DELETE);
+            pstmt.setString(1, id);
+            cnt = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            con.close(pstmt, conn);
+        }
+        return cnt;
+    }
 }

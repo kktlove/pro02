@@ -34,9 +34,17 @@ public class AddPaymentCtrl extends HttpServlet {
         CustomDAO cusDao = new CustomDAO();
         Custom cus = cusDao.getCustom(cid);
 
+        String from = "";
+        if(request.getParameter("from")==""){
+            from = "pro";
+        } else {
+            from = request.getParameter("from");
+        }
+
         request.setAttribute("pro", pro);
         request.setAttribute("amount", amount);
         request.setAttribute("cus", cus);
+        request.setAttribute("from", from);
         if(pro!=null) {
             RequestDispatcher view = request.getRequestDispatcher("/payment/addPayment.jsp");
             view.forward(request, response);

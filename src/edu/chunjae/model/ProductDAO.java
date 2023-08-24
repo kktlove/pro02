@@ -210,14 +210,13 @@ public class ProductDAO {
         try {
             pstmt = conn.prepareStatement(DBConnect.PRODUCT_UPDATE);
             pstmt.setString(1, pro.getPname());
-            pstmt.setString(2, pro.getCate());
-            pstmt.setString(3, pro.getPcomment());
-            pstmt.setString(4, pro.getPlist());
-            pstmt.setInt(5, pro.getPrice());
-            pstmt.setString(6, pro.getImgSrc1());
-            pstmt.setString(7, pro.getImgSrc2());
-            pstmt.setString(8, pro.getImgSrc3());
-            pstmt.setInt(9, pro.getPno());
+            pstmt.setString(2, pro.getPcomment());
+            pstmt.setString(3, pro.getPlist());
+            pstmt.setInt(4, pro.getPrice());
+            pstmt.setString(5, pro.getImgSrc1());
+            pstmt.setString(6, pro.getImgSrc2());
+            pstmt.setString(7, pro.getImgSrc3());
+            pstmt.setInt(8, pro.getPno());
             cnt = pstmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
