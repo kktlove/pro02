@@ -10,30 +10,34 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/NoticeList.do")
-public class NoticeListCtrl extends HttpServlet {
+@WebServlet("/KwdNoticeList.do")
+public class KwdNoticeListCtrl extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("msg", "공지사항 목록을 출력합니다.");
 
+        String searchType = request.getParameter("searchType");
+        String kwd = request.getParameter("kwd");
+
         NoticeDAO dao = new NoticeDAO();
-        List<Notice> notiList = dao.getNoticeList();
+        List<Notice> notiList = dao.getNoticeList(searchType, kwd, 0);
         Page pg = new Page();
-        int total = dao.getCount();
+        int total = dao.getCount(searchType, kwd);
         pg.makeBlock(1);
         pg.makeLastPageNum();
         pg.makePostStart(1);
-        notiList = dao.getNoticeList(0);
 
         int curPageNum = 1;
         if(request.getParameter("page")!=null){
             curPageNum = Integer.parseInt(request.getParameter("page"));
-            pg.makeBlock(curPageNum);
-            pg.makeLastPageNum();
-            pg.makePostStart(curPageNum);
-            notiList = dao.getNoticeList(pg.getPostStart()-1);
+            pg.makeBlock(curPageNum, searchType, kwd);
+            pg.makeLastPageNum(searchType, kwd);
+            pg.makePostStart(curPageNum, searchType, kwd);
+            notiList = dao.getNoticeList(searchType, kwd,pg.getPostStart()-1);
         }
 
+        request.setAttribute("searchType", searchType);
+        request.setAttribute("kwd", kwd);
         request.setAttribute("totalPageCount", pg.getTotalPageCount());
         request.setAttribute("pageBlockNum", pg.getPageBlockNum());
         request.setAttribute("totalBlockNum", pg.getTotalBlockNum());

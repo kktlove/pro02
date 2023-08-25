@@ -20,4 +20,5 @@ body, html { width: 100%; }
 .list li { margin-top: 24px; }
 .msg { text-align: center; }
 .subnav { padding-left: 4rem; }
+.container-fluid {    margin: 0; }
 </style>

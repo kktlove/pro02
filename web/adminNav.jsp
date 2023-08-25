@@ -6,6 +6,11 @@
     <ul class="navbar-nav">
         <li class="nav-item">
             <a href="" class="nav-link">공지사항 관리</a>
+            <ul class="navbar-nav subnav">
+                <li class="nav-item"><a href="${path2 }/NoticeList.do" class="nav-link">공지사항 목록</a></li>
+                <li class="nav-item"><a href="${path2 }/AddNotice.do" class="nav-link">공지사항 등록</a></li>
+                <li class="nav-item"><a href="" class="nav-link"></a></li>
+            </ul>
         </li>
         <li class="nav-item"><a href="">상품 관리</a>
             <ul class="navbar-nav subnav">

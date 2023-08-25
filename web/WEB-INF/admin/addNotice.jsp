@@ -50,7 +50,7 @@
                     </table>
                     <div class="group container">
                         <input type="submit" value="글 등록" class="btn btn-primary"/>
-                        <a href="${path }/AdminNoticeList.do" class="btn btn-primary">글 목록</a>
+                        <a href="${path }/NoticeList.do" class="btn btn-primary">글 목록</a>
                     </div>
                 </form>
             </div>

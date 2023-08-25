@@ -18,7 +18,7 @@ public class DeleteNoticeCtrl extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         if(a>0){
-            response.sendRedirect("/AdminNoticeList.do");
+            response.sendRedirect(request.getContextPath()+"/NoticeList.do");
         } else {
             out.println("<script>history.go(-1);</script>");
         }

@@ -61,6 +61,10 @@
                 </table>
                 <div class="btn-group">
                     <a href="${path }/NoticeList.do" class="btn btn-primary">글 목록</a>
+                    <c:if test="${sid.equals('admin')}">
+                        <a href="${path }/UpdateNotice.do?no=${noti.no }" class="btn btn-primary">글 수정</a>
+                        <a href="${path }/DeleteNotice.do?no=${noti.no }" class="btn btn-primary">글 삭제</a>
+                    </c:if>
                 </div>
             </div>
         </div>
