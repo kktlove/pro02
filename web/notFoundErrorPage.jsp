@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" isErrorPage="true" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +7,6 @@
     <title>Title</title>
 </head>
 <body>
-
+<h1>해당 내용이 존재하지 않습니다.</h1>
 </body>
 </html>

@@ -20,8 +20,6 @@ public class PaymentListCtrl extends HttpServlet {
         PaymentDAO payDAO = new PaymentDAO();
         List<PaymentVO> payList = payDAO.getCidPaymentList(cid);
 
-
-
         request.setAttribute("payList", payList);
         RequestDispatcher view = request.getRequestDispatcher("/payment/paymentList.jsp");
         view.forward(request, response);

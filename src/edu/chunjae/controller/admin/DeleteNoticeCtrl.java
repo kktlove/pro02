@@ -10,6 +10,13 @@ import java.io.PrintWriter;
 public class DeleteNoticeCtrl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String sid = (String) session.getAttribute("sid");
+
+        if(!sid.equals("admin") || sid==null){
+            response.sendRedirect(request.getContextPath());
+        }
+
         int no = Integer.parseInt(request.getParameter("no"));
 
         NoticeDAO dao = new NoticeDAO();

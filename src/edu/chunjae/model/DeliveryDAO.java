@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DeliveryDAO {
     static Connection conn = null;
@@ -93,6 +95,7 @@ public class DeliveryDAO {
         return del;
     }
 
+
     //배송 완료 처리
     public int deliveryComplete(int dno){
         int cnt = 0;
@@ -100,8 +103,7 @@ public class DeliveryDAO {
         conn = con.connect();
         try {
             pstmt = conn.prepareStatement(DBConnect.DELIVERY_COMPLETE);
-            pstmt.setInt(1, 2);
-            pstmt.setInt(2, dno);
+            pstmt.setInt(1, dno);
             cnt = pstmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -131,4 +133,83 @@ public class DeliveryDAO {
         }
         return cnt;
     }
+
+    //구매완료 처리
+    public int salesComplete(int dno){
+        int cnt = 0;
+        DBConnect con = new PostgreCon();
+        conn = con.connect();
+        try {
+            pstmt = conn.prepareStatement(DBConnect.DELIVERY_SALES_COMPLETE);
+            pstmt.setInt(1, dno);
+            cnt = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            con.close(pstmt, conn);
+        }
+        return cnt;
+    }
+
+    public List<Delivery> getDeliveryList(){
+        List<Delivery> delList = new ArrayList<>();
+        int cnt = 0;
+        DBConnect con = new PostgreCon();
+        conn = con.connect();
+        try {
+            pstmt = conn.prepareStatement(DBConnect.DELIVERY_SELECT_LIST);
+            rs = pstmt.executeQuery();
+            while(rs.next()){
+                Delivery del = new Delivery();
+                del.setDno(rs.getInt("dno"));
+                del.setSno(rs.getInt("sno"));
+                del.setCid(rs.getString("cid"));
+                del.setDaddr(rs.getString("daddr"));
+                del.setCustel(rs.getString("custel"));
+                del.setPcom(rs.getString("pcom"));
+                del.setPtel(rs.getString("ptel"));
+                del.setPstate(rs.getInt("pstate"));
+                del.setSdate(rs.getString("sdate"));
+                del.setRdate(rs.getString("rdate"));
+                del.setBcode(rs.getString("bcode"));
+                delList.add(del);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            con.close(rs, pstmt, conn);
+        }
+        return delList;
+    }
+
+    public Delivery getDelivery2(int dno){
+        Delivery del = new Delivery();
+        int cnt = 0;
+        DBConnect con = new PostgreCon();
+        conn = con.connect();
+        try {
+            pstmt = conn.prepareStatement(DBConnect.DELIVERY_SELECT_ONE);
+            pstmt.setInt(1, dno);
+            rs = pstmt.executeQuery();
+            if(rs.next()){
+                del.setDno(rs.getInt("dno"));
+                del.setSno(rs.getInt("sno"));
+                del.setCid(rs.getString("cid"));
+                del.setDaddr(rs.getString("daddr"));
+                del.setCustel(rs.getString("custel"));
+                del.setPcom(rs.getString("pcom"));
+                del.setPtel(rs.getString("ptel"));
+                del.setPstate(rs.getInt("pstate"));
+                del.setSdate(rs.getString("sdate"));
+                del.setRdate(rs.getString("rdate"));
+                del.setBcode(rs.getString("bcode"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            con.close(rs, pstmt, conn);
+        }
+        return del;
+    }
 }
+

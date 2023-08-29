@@ -132,6 +132,10 @@ public class PaymentDAO {
                 pay.setCid(rs.getString("cid"));
                 pay.setPno(rs.getInt("pno"));
                 pay.setAmount(rs.getInt("amount"));
+                pay.setPmethod(rs.getString("pmethod"));
+                pay.setPcom(rs.getString("pcom"));
+                pay.setCnum(rs.getString("cnum"));
+                pay.setPayprice(rs.getInt("payprice"));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -148,6 +152,35 @@ public class PaymentDAO {
         try {
             pstmt = conn.prepareStatement(DBConnect.PAYMENT_SELECT_CID);
             pstmt.setString(1, cid);
+            rs = pstmt.executeQuery();
+            while(rs.next()){
+                PaymentVO pay = new PaymentVO();
+                pay.setSno(rs.getInt("sno"));
+                pay.setCid(rs.getString("cid"));
+                pay.setPno(rs.getInt("pno"));
+                pay.setAmount(rs.getInt("amount"));
+                pay.setPmethod(rs.getString("pmethod"));
+                pay.setPcom(rs.getString("pcom"));
+                pay.setCnum(rs.getString("cnum"));
+                pay.setPayprice(rs.getInt("payprice"));
+                pay.setPname(getVOPname(pay.getPno()));
+                pay.setPstate(getVOState(pay.getSno()));
+                payList.add(pay);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            con.close(rs, pstmt, conn);
+        }
+        return payList;
+    }
+
+    public List<PaymentVO> getPaymentList(){
+        List<PaymentVO> payList = new ArrayList<>();
+        DBConnect con = new PostgreCon();
+        conn = con.connect();
+        try {
+            pstmt = conn.prepareStatement(DBConnect.PAYMENT_SELECT_LIST);
             rs = pstmt.executeQuery();
             while(rs.next()){
                 PaymentVO pay = new PaymentVO();

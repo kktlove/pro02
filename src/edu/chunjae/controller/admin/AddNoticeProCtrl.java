@@ -16,6 +16,13 @@ public class AddNoticeProCtrl extends HttpServlet {
         //String title = request.getParameter("title");
         //String content = request.getParameter("content");
 
+        HttpSession session = request.getSession();
+        String sid = (String) session.getAttribute("sid");
+
+        if(!sid.equals("admin") || sid==null){
+            response.sendRedirect(request.getContextPath());
+        }
+
         Notice noti = new Notice();
         //noti.setTitle(title);
         noti.setTitle(request.getParameter("title"));

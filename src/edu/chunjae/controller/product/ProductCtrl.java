@@ -1,7 +1,9 @@
 package edu.chunjae.controller.product;
 
 import edu.chunjae.dto.Product;
+import edu.chunjae.dto.Review;
 import edu.chunjae.model.ProductDAO;
+import edu.chunjae.model.ReviewDAO;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
@@ -21,6 +23,10 @@ public class ProductCtrl extends HttpServlet {
         Product pro = dao.getProduct(pno);
         int amount = dao.getAmount(pno);
 
+        ReviewDAO revDAO = new ReviewDAO();
+        List<Review> revList = revDAO.reviewList(pno);
+
+        request.setAttribute("revList", revList);
         request.setAttribute("pro", pro);
         request.setAttribute("amount", amount);
         RequestDispatcher view = request.getRequestDispatcher("/product/getProduct.jsp");

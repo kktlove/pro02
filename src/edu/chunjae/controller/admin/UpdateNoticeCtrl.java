@@ -10,6 +10,13 @@ import java.io.IOException;
 public class UpdateNoticeCtrl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String sid = (String) session.getAttribute("sid");
+
+        if(!sid.equals("admin") || sid==null){
+            response.sendRedirect(request.getContextPath());
+        }
+
         String msg = "공지사항의 내용을 수정합니다.";
         int no = Integer.parseInt(request.getParameter("no"));
 

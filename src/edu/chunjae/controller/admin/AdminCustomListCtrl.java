@@ -17,6 +17,13 @@ public class AdminCustomListCtrl extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("msg", "회원 목록을 출력합니다.");
 
+        HttpSession session = request.getSession();
+        String sid = (String) session.getAttribute("sid");
+
+        if(!sid.equals("admin") || sid==null){
+            response.sendRedirect(request.getContextPath());
+        }
+
         CustomDAO dao = new CustomDAO();
         List<Custom> cusList = dao.getCustomList();
         request.setAttribute("cusList", cusList);

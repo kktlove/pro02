@@ -11,6 +11,18 @@
     <%@ include file="../common.jsp"%>
     <style>
     th.item1 { width:16%; }
+    #tb2 { width: 800px; margin:20px auto; }
+    #tb2 .item1 { width:550px; }
+    #tb2 .item2 { width:120px; }
+    #tb2 .item3 { width:120px; }
+    #tb2 p { width:500px; padding:14px; overflow:hidden; height:36px; white-space: nowrap; text-overflow: ellipsis; }
+    #tb2 p.comment { text-align: center; }
+    .star { background-image: url("${path }/images/star2.jpg"); background-repeat:repeat-x; height:20px; overflow:hidden; }
+    .star1 { width:20px; }
+    .star2 { width:40px; }
+    .star3 { width:60px; }
+    .star4 { width:80px; }
+    .star5 { width:100px; }
     </style>
 </head>
 <body>
@@ -94,6 +106,45 @@
                         <a href="${path }/AddPayment.do?pno=${pro.pno }" class="btn btn-primary">구매하기</a>
                         <a href="${path }/AddCart.do?pno=${pro.pno }" class="btn btn-primary">장바구니 담기</a>
                     </c:if>
+                </div>
+                <hr>
+                <div class="container">
+                    <table class="table" id="tb2">
+                        <tbody>
+                        <c:if test="${!empty revList}">
+                            <c:forEach var="rev" items="${revList}" varStatus="status">
+                                <tr>
+                                    <td class="item1"><p>${rev.content }</p></td>
+                                    <td class="item2">
+                                        <div class="author" title="${rev.cid }">
+                                        <c:if test="${rev.star==5}">
+                                            <div class="star star5"></div>
+                                        </c:if>
+                                        <c:if test="${rev.star==4}">
+                                            <div class="star star4"></div>
+                                        </c:if>
+                                        <c:if test="${rev.star==3}">
+                                            <div class="star star3"></div>
+                                        </c:if>
+                                        <c:if test="${rev.star==2}">
+                                            <div class="star star2"></div>
+                                        </c:if>
+                                        <c:if test="${rev.star==1}">
+                                            <div class="star star1"></div>
+                                        </c:if>
+                                        </div>
+                                    </td>
+                                    <td class="item3"></td>
+                                </tr>
+                            </c:forEach>
+                        </c:if>
+                        <c:if test="${empty revList}">
+                        <tr>
+                            <td colspan="3"><p class="comment"><strong style="font-size:16px;">아직 이용후기가 없습니다.</strong></p></td>
+                        </tr>
+                        </c:if>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

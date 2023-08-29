@@ -71,13 +71,14 @@
                             <td class="item1">${status.count }</td>
                             <td class="item2">
                                 <span title="${pay.pno }">${pay.pname }</span>
+                                <a href="${path }/Payment.do?sno=${pay.sno }" title="${pay.pno }" class="btn btn-primary">상세 정보 조회</a>
                             </td>
                             <td class="item3">
                                 <p>구매 수량 : ${pay.amount }</p>
                                 <p>결제 방법 : ${pay.pmethod }</p>
                                 <p>결제 대행 : ${pay.pcom }</p>
                                 <p>결제 번호 : ${pay.cnum }</p>
-                                <p>결제 금액 : ${pay.payprice }</p>
+                                <p>결제 금액 : <fmt:formatNumber value="${pay.payprice }" pattern="#,##0" /></p>
                             </td>
                             <td class="item4">
                                 <c:if test="${pay.pstate==0}">
@@ -87,7 +88,7 @@
                                     <a href="${path }/Delivery.do?sno=${pay.sno }" class="btn btn-primary">배송 조회</a>
                                 </c:if>
                                 <c:if test="${pay.pstate==2}">
-                                    <span class="btn btn-primary">배송 완료</span>
+                                    <span class="btn btn-primary">배송 완료</span><br>
                                     <a href="${path }/AddReview.do?sno=${pay.sno }" class="btn btn-primary">구매 결정</a>
                                 </c:if>
                             </td>

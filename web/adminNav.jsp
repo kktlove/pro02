@@ -20,6 +20,8 @@
                 <li class="nav-item"><a href="" class="nav-link"></a></li>
             </ul>
         </li>
-        <li class="nav-item"><a href="" class="nav-link">댓글 관리</a></li>
+        <li class="nav-item"><a href="${path2 }/AdminReviewList.do" class="nav-link">댓글 관리</a></li>
+        <li class="nav-item"><a href="${path2 }/AdminPaymentList.do" class="nav-link">결제 관리</a></li>
+        <li class="nav-item"><a href="${path2 }/DeliveryList.do" class="nav-link">배송 관리</a></li>
     </ul>
 </nav>

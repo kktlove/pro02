@@ -9,6 +9,13 @@ import java.io.IOException;
 public class AddNoticeCtrl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String sid = (String) session.getAttribute("sid");
+
+        if(!sid.equals("admin") || sid==null){
+            response.sendRedirect(request.getContextPath());
+        }
+
         String msg = "관리자의 공지사항 글 등록폼이 로딩되었습니다.";
 
         request.setAttribute("msg", msg);

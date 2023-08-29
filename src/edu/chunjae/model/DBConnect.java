@@ -54,13 +54,12 @@ public interface DBConnect {
     final static String RETURN_CART = "insert into cart values (default, ?, ?, ?)";
     final static String RETURN_DELEVERY = "delete from delivery where sno=?";
 
-    //배송 등록 처리
+    //배송 처리
     final static String DELIVERY_PRO = "update delivery set pcom=?, ptel=?, pstate=1, sdate=current_timestamp, rdate=?, bcode=? where dno=?";
-
-    //배송 완료 처리
     final static String DELIVERY_COMPLETE = "update delivery set pstate=2 where dno=?";
-
+    final static String DELIVERY_SALES_COMPLETE = "update delivery set pstate=3 where dno=?";
     final static String DELIVERY_SELECT_ONE = "select * from delivery where dno=?";
+    final static String DELIVERY_SELECT_LIST = "select * from delivery order by dno desc";
     final static String DELIVERY_SELECT_SNO = "select * from delivery where sno=?";
 
     //재고 조회
@@ -78,6 +77,12 @@ public interface DBConnect {
     final static String PAYMENT_SELECT_LIST ="select * from payment order by sno desc";
     final static String PAYMENT_SELECT_ONE ="select * from payment where sno=?";
     final static String PAYMENT_SELECT_CID ="select * from payment where cid=?";
+
+    //리뷰 기능
+    final static String REVIEW_INSERT = "insert into review values (default, ?, ?, ?, ?, default)";
+    final static String REVIEW_SELECT_PNO = "select * from review where sno in (select sno from payment where pno=?)";
+    final static String REVIEW_SELECT_LIST= "select * from review order by resdate desc";
+    final static String REVIEW_DELETE = "delete from review where rno=?";
 
     public Connection connect();
     public void close(PreparedStatement pstmt, Connection conn);

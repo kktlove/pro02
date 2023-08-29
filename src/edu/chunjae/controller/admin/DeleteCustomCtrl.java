@@ -12,6 +12,13 @@ import java.io.PrintWriter;
 public class DeleteCustomCtrl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String sid = (String) session.getAttribute("sid");
+
+        if(!sid.equals("admin") || sid==null){
+            response.sendRedirect(request.getContextPath());
+        }
+
         String[] custs = request.getParameterValues("id");
 
         CustomDAO dao = new CustomDAO();

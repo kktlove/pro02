@@ -212,7 +212,9 @@ select * from inventory;
 select * from cart;
 select * from serve;
 select * from receive;
-select * from notice;
+select * from review;
+select * from notice order by resdate desc limit 5 offset 0;
+select count(*) as cnt from notice where content like '%더미%' limit 5 offset 0;
 
 -- 재고 처리 뷰 생성
 create view inventory as (select a.pno as pno, (sum(a.amount)-sum(b.amount)) as amount from receive a, serve b where a.pno=b.pno group by a.pno, b.pno);
