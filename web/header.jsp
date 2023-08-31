@@ -44,6 +44,9 @@
                             <a class="nav-link" href="${path1 }/FileUploadTest2.do">파일 업로드2</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="${path1 }/Jsoup1">네이버 뉴스</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                         </li>
                     </ul>
